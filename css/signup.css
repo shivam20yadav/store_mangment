@@ -1,0 +1,64 @@
+fieldset{
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
+    border-top-left-radius:7px;
+    border-top-right-radius:7px;
+}
+h1{
+    font-family:'Comic Sans MS';
+    margin-left:50px;
+    color:white;    
+}
+input[type="text"]{
+    width:430px;
+    height:40px; 
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
+    border-top-left-radius:7px;
+    border-top-right-radius:7px;
+    font-family:'Comic Sans MS';
+    font-size:20px;
+    padding-left:20px;
+    margin-right:10px;
+    margin-left:10px;
+}
+input[type="password"]{
+    width:430px; 
+    height:40px; 
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
+    border-top-left-radius:7px;
+    border-top-right-radius:7px;
+    font-family:'Comic Sans MS';
+    font-size:20px;
+    padding-left:20px;
+    margin-left:10px;
+    margin-right:10px;
+}
+input[type="button"]{
+    width:455px; 
+    height:40px; 
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
+    border-top-left-radius:7px;
+    border-top-right-radius:7px;
+    font-family:'Comic Sans MS';
+    font-size:20px;
+    padding-left:20px;
+    margin-left:10px;
+    margin-right:10px;
+}
+hr{
+    border: 2px solid;
+    color:white;
+}
+a{
+    color:yellow;
+    text-decoration:none
+}
+p{
+    margin-left:60px;
+    font-size:20px;
+    color:white;
+    font-family:'Comic Sans MS';
+}
