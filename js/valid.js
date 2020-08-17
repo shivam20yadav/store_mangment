@@ -1,8 +1,0 @@
-
-function sign() {
-   
-}
-
-function login() {
-
-}

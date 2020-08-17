@@ -279,6 +279,11 @@ if(!isset($_SESSION["sess_name"])){
 							<span>Dispatch</span>
 						</a>
 					</li>
+					<li>
+						<a href="logout.php">
+							<span>Logout</span>
+						</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
