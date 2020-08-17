@@ -266,7 +266,7 @@ if(!isset($_SESSION["sess_name"])){
 				<ul>
 					<li class="active">
 						<a href="index.php">
-							<span>Analytics</span>
+							<span>DashBorad</span>
 						</a>
                     </li>
                     <li>

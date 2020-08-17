@@ -1,0 +1,110 @@
+<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse1">Inventory</a>
+				</h4>
+			</div>
+			<div id="collapse1" class="panel-collapse collapse">
+				<!---->
+				<table>
+					<tr>
+						<th>Product Id</th>
+						<th>Product Name</th>
+						<th>Product quantity</th>
+						<th>Product Price</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>lenovo laptop</td>
+						<td>100</td>
+						<td>100000</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>cctv</td>
+						<td>1000</td>
+						<td>1000000</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>fire hose</td>
+						<td>100</td>
+						<td>10000</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>fire pipe</td>
+						<td>100</td>
+						<td>1000</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse2">Buyer List</a>
+				</h4>
+			</div>
+			<div id="collapse2" class="panel-collapse collapse">
+				<!---->
+				<table>
+					<tr>
+						<th>Buyer id</th>
+						<th>Buyer Name</th>
+						<th>Product</th>
+						<th>Total Money</th>
+						<th>Remening Money</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>Shivam</td>
+						<td>cctv</td>
+						<td>100000</td>
+						<td>50000</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>temp</td>
+						<td>fire hose</td>
+						<td>10000</td>
+						<td>500</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>sachi</td>
+						<td>laptop</td>
+						<td>50000</td>
+						<td>50000</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>Yashpal</td>
+						<td>home security</td>
+						<td>1000000</td>
+						<td>20000</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: 20px;
+  margin-top: 20px;
+  
+}
+
+td, th {
+  border: 1px solid black	;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
