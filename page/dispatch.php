@@ -271,7 +271,7 @@ if(!isset($_SESSION["sess_name"])){
                     </li>
                     <li>
 						<a href="insert.php">
-							<span>Insert </span>
+							<span>Product Handler</span>
 						</a>
                     </li>
                     <li class="active">
