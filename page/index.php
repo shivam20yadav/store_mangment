@@ -148,7 +148,6 @@ if(!isset($_SESSION["sess_name"])){
 			padding: 0;
 			padding-top: 44px;
 			height: 100%;
-			overflow: scroll;
 		}
 		.main-content .title {
 			background-color: #eef1f7;
@@ -276,7 +275,7 @@ if(!isset($_SESSION["sess_name"])){
                     </li>
                     <li>
 						<a href="dispatch.php">
-							<span>Dispatch</span>
+							<span>Buyer</span>
 						</a>
 					</li>
 					<li>
@@ -289,12 +288,10 @@ if(!isset($_SESSION["sess_name"])){
 		</div>
 		<div class="main-content">
 			<div class="title">
-				Insert
+				Remaining Stock
         </div>
-        <div class="main">
-            <p>
-                sdfs
-            </p>
+        <div class="main"style="padding-left:20px;">
+            
         </div>
         <div class = "sec">
             <p>
