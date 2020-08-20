@@ -251,7 +251,7 @@ if(!isset($_SESSION["sess_name"])){
 		<div class="header">
 			<div class="logo">
 				<i class="fa fa-tachometer"></i>
-				<span>Kairav</span>
+				<span><a href="index.php">Kairav</a></span>
 			</div>
 			<input type="submit" name="logout">
 			<a href="#" class="nav-trigger"><span></span></a>
