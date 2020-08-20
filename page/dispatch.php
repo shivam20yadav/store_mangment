@@ -260,7 +260,7 @@ if(!isset($_SESSION["sess_name"])){
 		<div class="side-nav">
 			<div class="logo">
 				<i class="fa fa-tachometer"></i>
-				<span><a href="index.php">Kairav</a></span>
+				<span>Kairav</span>
 			</div>
 			<nav>
 				<ul>
