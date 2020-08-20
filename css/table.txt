@@ -108,3 +108,31 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+$pro_name = mysqli_real_escape_string($con,$_POST['pro_nam']);
+		$pro_qty = mysqli_real_escape_string($con,$_POST['pro_qty']);
+
+		if($pro_name == ""){
+			echo '<script>alert("please enter product name")</script>';
+		}
+		else{
+			$sql = "select count(*) as pro from invt_tbl where product_name ='".$pro_name."'";
+        	$result = mysqli_query($con,$sql);
+        	$row = mysqli_fetch_array($result);
+        	$count = $row['pro'];
+
+        	if($count > 0){
+            	echo '<script>alert("Product already exist if you want to update go update tab ")</script>'; 
+        	}
+		}
+		if($pro_qty == ""){
+			echo '<script>alert("please enter product quantity")</script>';
+		}
+		else{
+			$sql = "INSERT INTO user (product_name, qty) VALUES ('$pro_name','$pro_qty')";
+			$result = mysqli_query($con, $sql);
+			if ($result)
+        	{
+            	echo '<script>alert("Product inserted")</script>';
+        	}
+		}

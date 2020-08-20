@@ -38,7 +38,6 @@ if(isset($_POST['but_submit'])){
         $sql = "INSERT INTO user (user_name, password) VALUES ('$uname','$password')";
 
         $result = mysqli_query($con, $sql);
-        echo "$result";
         if ($result)
         {
             header('Location: login.php');

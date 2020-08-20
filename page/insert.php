@@ -1,27 +1,67 @@
 <?php
-session_start();
-if(!isset($_SESSION["sess_name"])){
-	header("Location: login.php");
+	session_start();
+	if(!isset($_SESSION["sess_name"])){
+		header("Location: login.php");
+	}
+
+   	if(isset($_POST['btn_submit'])){
+		$host = "localhost"; /* Host name */
+		$user = "root"; /* User */
+		$password = ""; /* Password */
+		$dbname = "user_data"; /* Database name */
+
+		$con = mysqli_connect($host, $user, $password,$dbname);
+		// Check connection
+		if (!$con) {
+ 			die("Connection failed: " . mysqli_connect_error());
+		}
+		$pro_name = mysqli_real_escape_string($con,$_POST['pro_nam']);
+		$pro_qty = mysqli_real_escape_string($con,$_POST['pro_qty']);
+		if($pro_name == ""){
+			echo '<script>alert("please enter product name")</script>';
+		}
+		else{
+			$sql = "select count(*) as pro from invt_tbl where product_name ='".$pro_name."'";
+        	$result = mysqli_query($con,$sql);
+        	$row = mysqli_fetch_array($result);
+        	$count = $row['pro'];
+
+        	if($count > 0){
+				echo '<script>alert("Product already exist if you want to update go update tab ")</script>'; 
+				header('Location: insert.php');
+        	}
+		}
+		if($pro_qty == ""){
+			echo '<script>alert("please enter product quantity")</script>';
+		}
+		else{
+			$sql = "INSERT INTO invt_tbl (product_name, qty) VALUES ('$pro_name','$pro_qty')";
+			$result = mysqli_query($con, $sql);
+			if ($result)
+        	{
+            	echo '<script>alert("Product inserted")</script>';
+        	}
+		}
    }
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Insert</title>
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet'
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Product Handler</title>
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet'
 		type='text/css'>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/data.js"></script>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-		<style type="text/css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style type="text/css">
 		* {
 			box-sizing: border-box;
 		}
@@ -245,8 +285,8 @@ if(!isset($_SESSION["sess_name"])){
 		$(document).ready(function() {
 		$('.nav-trigger').click(function() {
 		$('.side-nav').toggleClass('visible');
-	});
-});
+		});
+		});
 	</script>
 	</head>
 	<body>
@@ -292,27 +332,68 @@ if(!isset($_SESSION["sess_name"])){
 				Insert
         </div>
         <div class="main">
-		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" href="#collapse1">Insert Inventory</a>
-				</h4>
+			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse1">Insert Inventory</a>
+					</h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse">
+					<!---->
+					<form method="POST">
+						<input type=text placeholder="inser product name" name="pro_nam" required><br>
+						<input type=text placeholder="Product quantity "name="pro_qty" required><br>
+						<input type=submit value="Insert" name="btn_submit">
+					</form>			
+				</div>
 			</div>
-			<div id="collapse1" class="panel-collapse collapse">
-				<!---->
-				<form>
-					<input type=text placeholder="inser product name"><br>
-					<input type=text placeholder="Product quantity "><br>
-					<input type=submit name="Insert">
-				</form>			
-			</div>
-		</div>
-
         </div>
         <div class = "sec">
-            <p>
-                asd
-            </p>
+		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse2">Update Inventory</a>
+					</h4>
+				</div>
+				<div id="collapse2" class="panel-collapse collapse">
+					<!---->
+					<?php
+						$host = "localhost"; /* Host name */
+						$user = "root"; /* User */
+						$password = ""; /* Password */
+						$dbname = "user_data"; /* Database name */
+				
+						$con = mysqli_connect($host, $user, $password,$dbname);
+						// Check connection
+						if (!$con) {
+							 die("Connection failed: " . mysqli_connect_error());
+						}
+						$result = mysqli_query($con,"SELECT * FROM invt_tbl");
+					?>
+					<table>
+						<tr>
+							<td>Prodcut Id</td>
+							<td>Product Name</td>
+							<td>qty</td>
+							<td>action</td>
+						</tr>
+						<?php
+							$i=0;
+							while($row = mysqli_fetch_array($result)) {
+						?>
+							<tr class="<?php if(isset($classname)) echo $classname;?>">
+							<td><?php echo $row["product_id"]; ?></td>
+							<td><?php echo $row["product_name"]; ?></td>
+							<td><?php echo $row["qty"]; ?></td>
+							<td><a href="update.php?product_id=<?php echo $row["product_id"]; ?>">Update</a></td>
+							</tr>
+						<?php
+							$i++;
+						}
+						?>
+					</table>
+				</div>
+			</div>
         </div>
 	</body>
 </html>
