@@ -292,9 +292,23 @@ if(!isset($_SESSION["sess_name"])){
 				Insert
         </div>
         <div class="main">
-            <p>
-                sdfs
-            </p>
+		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse1">Insert Inventory</a>
+				</h4>
+			</div>
+			<div id="collapse1" class="panel-collapse collapse">
+				<!---->
+				
+						<form>
+							<input type=text placeholder="inser product name">
+						</form>
+					
+				
+			</div>
+		</div>
+
         </div>
         <div class = "sec">
             <p>
