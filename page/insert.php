@@ -300,12 +300,11 @@ if(!isset($_SESSION["sess_name"])){
 			</div>
 			<div id="collapse1" class="panel-collapse collapse">
 				<!---->
-				
-						<form>
-							<input type=text placeholder="inser product name">
-						</form>
-					
-				
+				<form>
+					<input type=text placeholder="inser product name"><br>
+					<input type=text placeholder="Product quantity "><br>
+					<input type=submit name="Insert">
+				</form>			
 			</div>
 		</div>
 
