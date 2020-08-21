@@ -254,7 +254,6 @@ if(!isset($_SESSION["sess_name"])){
 				<i class="fa fa-tachometer"></i>
 				<span><a href="index.php">Kairav</a></span>
 			</div>
-			<input type="submit" name="logout">
 			<a href="#" class="nav-trigger"><span></span></a>
 		</div>
 		<div class="side-nav">

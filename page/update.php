@@ -20,7 +20,12 @@
             echo '<script>alert("please enter product quantity")</script>';
         }
         else{
-            mysqli_query($con,"UPDATE invt_tbl set product_name='".$pro_nam."', qty='".$pro_qty."' WHERE product_name='" .$pro_nam. "'");
+            $sql ="UPDATE invt_tbl set product_name='".$pro_nam."', qty='".$pro_qty."' WHERE product_name='" .$pro_nam. "'";
+            $result = mysqli_query($con, $sql);
+			if ($result)
+        	{
+                header('Location: insert.php');
+        	}
         }
     }
 
@@ -200,18 +205,12 @@
                 border-top-left-radius:7px;
                 border-top-right-radius:7px;
             }
-            .main a{
-                font-family:'Comic Sans MS';
-                text-decoration:none;
-                margin-left:90px;
-                font-size:20px;
-            }
             .main input[type = text]{
                 border-bottom-left-radius:7px;
                 border-bottom-right-radius:7px;
                 border-top-left-radius:7px;
                 border-top-right-radius:7px; 
-                display:inline-block;
+                
                 width:150px; 
                 margin-top:10px;
                 padding-left:10px;
@@ -230,7 +229,8 @@
                 margin-top:10px;
                 width:180px;
                 font-size:15px;
-                margin-bottom:10px;    
+                margin-bottom:10px;  
+                background-color:#bbbbe5;
             }
             /* set element styles to fit tablet and higher(desktop) */
             @media screen and (min-width: 600px) {
@@ -269,6 +269,17 @@
                 }
                 .main-content {
                     margin-left: 100px;
+                }
+                .main fieldset{
+                    border:0px;
+                }
+                .main #use{
+                    margin-left:59px;
+                }
+                .main input[type=submit]{
+                    width:150px;
+                    margin-left:125px;
+                    margin-top:20px;
                 }
             }
             /* set element styles for desktop */
@@ -370,16 +381,15 @@
                     <div><?php if(isset($message)) { echo $message; } ?>
                     </div>
                     <div style="padding-bottom:5px;">
-                    <a href="insert.php">Product Data</a>
                     </div>
                     <input type="hidden" name="product_id" class="txtField" value="<?php echo $row['product_id']; ?>">
-                    <br>
+                    
                     <tt>Product Name:- </tt>
                     <input type="text" name="product_name" class="txtField" value="<?php echo $row['product_name']; ?>">
-                    <br>
+                    
                     <tt>Qty:- <tt>
-                    <input type="text" name="product_qty" class="txtField" value="<?php echo $row['qty']; ?>">
-                    <br>
+                    <input type="text" id="use" name="product_qty" class="txtField" value="<?php echo $row['qty']; ?>">
+                    
                     <input type="submit" name="submit" value="Update Data" class="buttom">
                 </fieldset>
             </form>
