@@ -361,7 +361,7 @@
 						</a>
                     </li>
                     <li>
-						<a href="dispatch.php">
+						<a href="buyer.php">
 							<span>Buyer</span>
 						</a>
 					</li>

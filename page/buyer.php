@@ -275,7 +275,7 @@ if(!isset($_SESSION["sess_name"])){
 						</a>
                     </li>
                     <li class="active">
-						<a href="dispatch.php">
+						<a href="buyer.php">
 							<span>Buyer</span>
 						</a>
 					</li>
