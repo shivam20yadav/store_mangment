@@ -109,30 +109,28 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-$pro_name = mysqli_real_escape_string($con,$_POST['pro_nam']);
-		$pro_qty = mysqli_real_escape_string($con,$_POST['pro_qty']);
+<?php
+include_once 'conn.php';
+$result = mysqli_query($con,"SELECT * FROM invt_tbl WHERE product_id='" . $_GET['product_id'] . "'");
+$row= mysqli_fetch_array($result);
+?>
 
-		if($pro_name == ""){
-			echo '<script>alert("please enter product name")</script>';
-		}
-		else{
-			$sql = "select count(*) as pro from invt_tbl where product_name ='".$pro_name."'";
-        	$result = mysqli_query($con,$sql);
-        	$row = mysqli_fetch_array($result);
-        	$count = $row['pro'];
+<form name="frmUser" method="post" action="">
+        <div><?php if(isset($message)) { echo $message; } ?>
+        </div>
+        <div style="padding-bottom:5px;">
+        <a href="insert.php">Employee List</a>
+        </div>
+        Product Id:-  <br>
+        <input type="hidden" name="userid" class="txtField" value="<?php echo $row['product_id']; ?>">
+        <input type="text" name="userid"  value="<?php echo $row['product_id']; ?>">
+        <br>
+        Product Name:-  <br>
+        <input type="text" name="first_name" class="txtField" value="<?php echo $row['product_name']; ?>">
+        <br>
+        Qty:- <br>
+        <input type="text" name="last_name" class="txtField" value="<?php echo $row['qty']; ?>">
+        <br>
+        <input type="submit" name="submit" value="Update Data" class="buttom">
 
-        	if($count > 0){
-            	echo '<script>alert("Product already exist if you want to update go update tab ")</script>'; 
-        	}
-		}
-		if($pro_qty == ""){
-			echo '<script>alert("please enter product quantity")</script>';
-		}
-		else{
-			$sql = "INSERT INTO user (product_name, qty) VALUES ('$pro_name','$pro_qty')";
-			$result = mysqli_query($con, $sql);
-			if ($result)
-        	{
-            	echo '<script>alert("Product inserted")</script>';
-        	}
-		}
+        </form>
