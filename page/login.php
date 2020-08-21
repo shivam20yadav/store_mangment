@@ -60,7 +60,7 @@ if(isset($_POST['but_submit'])){
             position: absolute;
             top: 0;
             left: 0;
-        width: 100%;
+            width: 100%;
         
         }
         .new{

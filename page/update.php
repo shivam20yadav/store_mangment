@@ -189,6 +189,49 @@
                 color: #333;
                 font-size: 18px;
             }
+            .main fieldset{
+                border: 2px solid;
+                margin-left:40px;
+                margin-right:10px;
+                margin-top:20px;
+                width:300px;
+                border-bottom-left-radius:7px;
+                border-bottom-right-radius:7px;
+                border-top-left-radius:7px;
+                border-top-right-radius:7px;
+            }
+            .main a{
+                font-family:'Comic Sans MS';
+                text-decoration:none;
+                margin-left:90px;
+                font-size:20px;
+            }
+            .main input[type = text]{
+                border-bottom-left-radius:7px;
+                border-bottom-right-radius:7px;
+                border-top-left-radius:7px;
+                border-top-right-radius:7px; 
+                display:inline-block;
+                width:150px; 
+                margin-top:10px;
+                padding-left:10px;
+                font-size:18px;
+            }
+            .main tt{
+                margin-left:10px;
+                
+            }
+            .main input[type=submit]{
+                border-bottom-left-radius:7px;
+                border-bottom-right-radius:7px;
+                border-top-left-radius:7px;
+                border-top-right-radius:7px; 
+                margin-left:60px;
+                margin-top:10px;
+                width:180px;
+                font-size:15px;
+                margin-bottom:10px;    
+            }
             /* set element styles to fit tablet and higher(desktop) */
             @media screen and (min-width: 600px) {
                 .header {
@@ -299,12 +342,12 @@
 							<span>DashBorad</span>
 						</a>
                     </li>
-                    <li>
+                    <li class="active">
 						<a href="insert.php">
 							<span>Product Handler</span>
 						</a>
                     </li>
-                    <li class="active">
+                    <li>
 						<a href="dispatch.php">
 							<span>Buyer</span>
 						</a>
@@ -323,21 +366,22 @@
         </div>
         <div class="main">
             <form name="frmUser" method="post">
-                <div><?php if(isset($message)) { echo $message; } ?>
-                </div>
-                <div style="padding-bottom:5px;">
-                <a href="insert.php">Product Data</a>
-                </div>
-                <input type="hidden" name="product_id" class="txtField" value="<?php echo $row['product_id']; ?>">
-                <br>
-                Product Name:-  <br>
-                <input type="text" name="product_name" class="txtField" value="<?php echo $row['product_name']; ?>">
-                <br>
-                Qty:- <br>
-                <input type="text" name="product_qty" class="txtField" value="<?php echo $row['qty']; ?>">
-                <br>
-                <input type="submit" name="submit" value="Update Data" class="buttom">
-
+                <fieldset>
+                    <div><?php if(isset($message)) { echo $message; } ?>
+                    </div>
+                    <div style="padding-bottom:5px;">
+                    <a href="insert.php">Product Data</a>
+                    </div>
+                    <input type="hidden" name="product_id" class="txtField" value="<?php echo $row['product_id']; ?>">
+                    <br>
+                    <tt>Product Name:- </tt>
+                    <input type="text" name="product_name" class="txtField" value="<?php echo $row['product_name']; ?>">
+                    <br>
+                    <tt>Qty:- <tt>
+                    <input type="text" name="product_qty" class="txtField" value="<?php echo $row['qty']; ?>">
+                    <br>
+                    <input type="submit" name="submit" value="Update Data" class="buttom">
+                </fieldset>
             </form>
         </div>
         

@@ -81,6 +81,38 @@
 			background-color: #fff;
 			border-bottom: 3px solid #2d3d51;
 		}
+		.main input[type=text]{
+			width:200px;
+			margin-left:80px;
+			margin-top:10px;
+			border-bottom-left-radius:7px;
+            border-bottom-right-radius:7px;
+            border-top-left-radius:7px;
+            border-top-right-radius:7px;
+            font-family:'Comic Sans MS';
+			font-size:13px;
+			height:30px;
+			padding-left:10px;
+		}
+		.main form{
+			background-color:#9adab1;
+		}
+		.main input[type=submit]{
+			width:200px;
+			margin-top:10px;
+			margin-left:80px;
+			margin-bottom:10px;
+			border-bottom-left-radius:7px;
+            border-bottom-right-radius:7px;
+            border-top-left-radius:7px;
+			border-top-right-radius:7px;
+			background-color:#5db95d;
+			font-family:'Comic Sans MS';
+		}
+		.sec table{
+			margin-bottom:10px;
+			margin-left:50px;
+		}
 		/* logo in header(mobile version) and side-nav (tablet & desktop) */
 		.logo {
 			height: 44px;
@@ -237,6 +269,17 @@
 			.main-content {
 				margin-left: 100px;
 			}
+			.main input[type=text]{
+				display:inline-block;
+				margin-left:20px;
+				height:30px;
+				font-size:18px;
+				padding-bottom:5px;
+			}
+			.main input[type=submit]{
+				margin-left:20px;
+				font-size:20px;
+			}
 		}
 		/* set element styles for desktop */
 		@media screen and (min-width: 800px) {
@@ -260,6 +303,9 @@
 			}
 			.main-content {
 				margin-left: 200px;
+			}
+			.main input[type=text]{
+				display:inline-block;
 			}
 		}
 		table {
@@ -341,8 +387,8 @@
 				<div id="collapse1" class="panel-collapse collapse">
 					<!---->
 					<form method="POST">
-						<input type=text placeholder="inser product name" name="pro_nam" required><br>
-						<input type=text placeholder="Product quantity "name="pro_qty" required><br>
+						<input type=text placeholder="insert product name" name="pro_nam" required>
+						<input type=text placeholder="Product quantity "name="pro_qty" required>
 						<input type=submit value="Insert" name="btn_submit">
 					</form>			
 				</div>
