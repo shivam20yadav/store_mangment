@@ -1,10 +1,10 @@
 <?php
-session_start();
-if(!isset($_SESSION["sess_name"])){
-	header("Location: login.php");
-   }
-   if(isset($_POST['btn-submit']))
-   {
+	session_start();
+	if(!isset($_SESSION["sess_name"])){
+		header("Location: login.php");
+	}
+	if(isset($_POST['btn-submit']))
+	{
 		$host = "localhost"; /* Host name */
 		$user = "root"; /* User */
 		$password = ""; /* Password */
@@ -17,18 +17,20 @@ if(!isset($_SESSION["sess_name"])){
 		}
 
 		$client_name = mysqli_real_escape_string($con,$_POST['cli_nam']);
+		$client_number = mysqli_real_escape_string($con,$_POST['cli_num']);
 		if($client_name == ""){
 			echo '<script>alert("please enter client name")</script>';
 		}
 		else{
-			$sql = "INSERT INTO client-tbl (client_name) VALUES ('$client_name')";
+			$sql = "INSERT INTO client_tbl (client_name,mobile_no) VALUES ('$client_name',$client_number)";
 			$result = mysqli_query($con, $sql);
 			if ($result)
         	{
-           		echo '<script>alert("Product inserted")</script>';
-        	}
+				echo '<script>alert("Product inserted")</script>';
+				header('Location: buyer.php');
+			}
 		}
-   }
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -348,15 +350,61 @@ if(!isset($_SESSION["sess_name"])){
 				</div>
 				<div id="collapse1" class="panel-collapse collapse">
 					<!---->
-					<form method="POST">
+					<form method="POST" id="myForm">
 						<input type=text placeholder="Enter Client Name" name="cli_nam" required>	
+						<input type=text placeholder="Enter Mobile Number" name="cli_num" required>	
 						<input type="submit" value="Create" name="btn-submit">
 					</form>
 				</div>
 			</div>
         </div>
         <div class = "sec">
-            
+		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse2">Client Data</a>
+					</h4>
+				</div>
+				<div id="collapse2" class="panel-collapse collapse">
+					<!---->
+					<?php
+						$host = "localhost"; /* Host name */
+						$user = "root"; /* User */
+						$password = ""; /* Password */
+						$dbname = "user_data"; /* Database name */
+				
+						$con = mysqli_connect($host, $user, $password,$dbname);
+						// Check connection
+						if (!$con) {
+							 die("Connection failed: " . mysqli_connect_error());
+						}
+						$result = mysqli_query($con,"SELECT * FROM client_tbl");
+					?>
+					<table>
+						<tr>
+							<td>Client Id</td>
+							<td>Client Name</td>
+							<td>Contact Number</td>
+							<td>action</td>
+						</tr>
+						<?php
+							$i=0;
+							while($row = mysqli_fetch_array($result)) {
+						?>
+							<tr>
+							<td><?php echo $row["client_id"]; ?></td>
+							<td><?php echo $row["client_name"]; ?></td>
+							<td><?php echo $row["mobile_no"]; ?></td>
+							<td><a href="update.php?product_id=<?php echo $row["product_id"]; ?>">Update</a></td>
+							</tr>
+						<?php
+							$i++;
+						}
+						?>
+					</table>
+				</div>
+			</div>
+        </div>
         </div>
 	</body>
 </html>
