@@ -3,6 +3,32 @@ session_start();
 if(!isset($_SESSION["sess_name"])){
 	header("Location: login.php");
    }
+   if(isset($_POST['btn-submit']))
+   {
+		$host = "localhost"; /* Host name */
+		$user = "root"; /* User */
+		$password = ""; /* Password */
+		$dbname = "user_data"; /* Database name */
+
+		$con = mysqli_connect($host, $user, $password,$dbname);
+		// Check connection
+		if (!$con) {
+			die("Connection failed: " . mysqli_connect_error());
+		}
+
+		$client_name = mysqli_real_escape_string($con,$_POST['cli_nam']);
+		if($client_name == ""){
+			echo '<script>alert("please enter client name")</script>';
+		}
+		else{
+			$sql = "INSERT INTO client-tbl (client_name) VALUES ('$client_name')";
+			$result = mysqli_query($con, $sql);
+			if ($result)
+        	{
+           		echo '<script>alert("Product inserted")</script>';
+        	}
+		}
+   }
 ?>
 <!DOCTYPE html>
 <html>
@@ -148,7 +174,6 @@ if(!isset($_SESSION["sess_name"])){
 			padding: 0;
 			padding-top: 44px;
 			height: 100%;
-			overflow: scroll;
 		}
 		.main-content .title {
 			background-color: #eef1f7;
@@ -157,6 +182,29 @@ if(!isset($_SESSION["sess_name"])){
 			font-weight: 700;
 			color: #333;
 			font-size: 18px;
+		}
+		.main input[type=text]{
+			width:200px;
+			margin-left:60px;
+			margin-top:10px;
+			border-bottom-left-radius:7px;
+            border-bottom-right-radius:7px;
+            border-top-left-radius:7px;
+            border-top-right-radius:7px;
+            font-family:'Comic Sans MS';
+			font-size:13px;
+			height:30px;
+			padding-left:10px;
+			margin-bottom:10px;
+		}
+		.main input[type=submit]{
+			border-bottom-left-radius:7px;
+            border-bottom-right-radius:7px;
+            border-top-left-radius:7px;
+            border-top-right-radius:7px;
+			height:30px;
+			margin-left:5px;
+			margin-bottom:10px;
 		}
 		/* set element styles to fit tablet and higher(desktop) */
 		@media screen and (min-width: 600px) {
@@ -254,7 +302,6 @@ if(!isset($_SESSION["sess_name"])){
 				<i class="fa fa-tachometer"></i>
 				<span>Kairav</span>
 			</div>
-			<input type="submit" name="logout">
 			<a href="#" class="nav-trigger"><span></span></a>
 		</div>
 		<div class="side-nav">
@@ -289,17 +336,27 @@ if(!isset($_SESSION["sess_name"])){
 		</div>
 		<div class="main-content">
 			<div class="title">
-				Insert
-        </div>
+				client management
+        	</div>
+		
         <div class="main">
-            <p>
-                sdfs
-            </p>
+		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse1">Insert Client</a>
+					</h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse">
+					<!---->
+					<form method="POST">
+						<input type=text placeholder="Enter Client Name" name="cli_nam" required>	
+						<input type="submit" value="Create" name="btn-submit">
+					</form>
+				</div>
+			</div>
         </div>
         <div class = "sec">
-            <p>
-                asd
-            </p>
+            
         </div>
 	</body>
 </html>

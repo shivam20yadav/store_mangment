@@ -15,6 +15,7 @@
 		if (!$con) {
  			die("Connection failed: " . mysqli_connect_error());
 		}
+		
 		$pro_name = mysqli_real_escape_string($con,$_POST['pro_nam']);
 		$pro_qty = mysqli_real_escape_string($con,$_POST['pro_qty']);
 		if($pro_name == ""){
