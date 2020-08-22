@@ -14,22 +14,21 @@
         $pro_qty = mysqli_real_escape_string($con,$_POST['product_qty']);
 
         if($pro_nam == ""){
-            echo '<script>alert("please enter product name")</script>';
+            echo '<script>alert("please enter client name")</script>';
         }
         else if($pro_qty == ""){
-            echo '<script>alert("please enter product quantity")</script>';
+            echo '<script>alert("please enter client mobile")</script>';
         }
         else{
-            $sql ="UPDATE invt_tbl set product_name='".$pro_nam."', qty='".$pro_qty."' WHERE product_name='" .$pro_nam. "'";
+            $sql ="UPDATE client_tbl set client_name='".$pro_nam."', mobile_no='".$pro_qty."' WHERE client_name='" .$pro_nam. "'";
             $result = mysqli_query($con, $sql);
 			if ($result)
         	{
-                header('Location: insert.php');
+                header('Location: buyer.php');
         	}
         }
     }
-
-    $result = mysqli_query($con,"SELECT * FROM invt_tbl WHERE product_id='" . $_GET['product_id'] . "'");
+    $result = mysqli_query($con,"SELECT * FROM client_tbl WHERE client_id='" . $_GET['client_id'] . "'");
     $row= mysqli_fetch_array($result);
     
 ?>
@@ -274,11 +273,11 @@
                     border:0px;
                 }
                 .main #use{
-                    margin-left:59px;
+                    margin-left:5px;
                 }
                 .main input[type=submit]{
                     width:150px;
-                    margin-left:125px;
+                    margin-left:118px;
                     margin-top:20px;
                 }
             }
@@ -335,12 +334,12 @@
 							<span>DashBorad</span>
 						</a>
                     </li>
-                    <li class="active">
+                    <li>
 						<a href="insert.php">
 							<span>Product Handler</span>
 						</a>
                     </li>
-                    <li>
+                    <li class="active">
 						<a href="buyer.php">
 							<span>Buyer</span>
 						</a>
@@ -355,7 +354,7 @@
 		</div>
 		<div class="main-content">
 			<div class="title">
-				Update Data Form 
+				Update Client data
         </div>
         <div class="main">
             <form name="frmUser" method="post">
@@ -364,14 +363,11 @@
                     </div>
                     <div style="padding-bottom:5px;">
                     </div>
-                    <input type="hidden" name="product_id" class="txtField" value="<?php echo $row['product_id']; ?>">
-                    
-                    <tt>Product Name:- </tt>
-                    <input type="text" name="product_name" class="txtField" value="<?php echo $row['product_name']; ?>">
-                    
-                    <tt>Qty:- <tt>
-                    <input type="text" id="use" name="product_qty" class="txtField" value="<?php echo $row['qty']; ?>">
-                    
+                    <input type="hidden" name="product_id" class="txtField" value="<?php echo $row['client_id']; ?>">
+                    <tt>Client Name:- </tt>
+                    <input type="text" name="product_name" class="txtField" value="<?php echo $row['client_name']; ?>">
+                    <tt>Mobile No:- <tt>
+                    <input type="text" id="use" name="product_qty" class="txtField" value="<?php echo $row['mobile_no']; ?>">
                     <input type="submit" name="submit" value="Update Data" class="buttom">
                 </fieldset>
             </form>

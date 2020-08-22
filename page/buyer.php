@@ -272,22 +272,22 @@
 			}
 		}
 		table {
-		font-family: arial, sans-serif;
-		border-collapse: collapse;
-		width: 50%;
-		margin-left: 20px;
-		margin-top: 20px;
-		
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 50%;
+			margin-left: 20px;
+			margin-top: 20px;
+			margin-bottom: 10px;
 		}
 
 		td, th {
-		border: 1px solid black	;
-		text-align: left;
-		padding: 8px;
+			border: 1px solid black	;
+			text-align: left;
+			padding: 8px;
 		}
 
 		tr:nth-child(even) {
-		background-color: #dddddd;
+			background-color: #dddddd;
 		}
 	</style>
 	<script>
@@ -395,7 +395,7 @@
 							<td><?php echo $row["client_id"]; ?></td>
 							<td><?php echo $row["client_name"]; ?></td>
 							<td><?php echo $row["mobile_no"]; ?></td>
-							<td><a href="update.php?product_id=<?php echo $row["product_id"]; ?>">Update</a></td>
+							<td><a href="clupdate.php?client_id=<?php echo $row["client_id"]; ?>">Update</a></td>
 							</tr>
 						<?php
 							$i++;
