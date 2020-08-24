@@ -354,28 +354,10 @@
 			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<a data-toggle="collapse" href="#collapse1">Insert Client</a>
+						<a data-toggle="collapse" href="#collapse2">Client Data</a>
 					</h4>
 				</div>
-				<div id="collapse1" class="panel-collapse collapse">
-					<!---->
-					<form method="POST" id="myForm">
-						<input type=text placeholder="Enter Client Name" name="cli_nam" required>	
-						<input type=text placeholder="Enter Mobile Number" name="cli_num" required>	
-						<input type=text placeholder="Enter fix amount " name="cli_mon" required>	
-						<input type="submit" value="Create" name="btn-submit">
-					</form>
-				</div>
-			</div>
-        </div>
-		<div class = "thr">
-			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" href="#collapse3">Project Management</a>
-					</h4>
-				</div>
-				<div id="collapse3" class="panel-collapse collapse">
+				<div id="collapse2" class="panel-collapse collapse">
 					<!---->
 					<?php
 						$host = "localhost"; /* Host name */
@@ -388,13 +370,15 @@
 						if (!$con) {
 							die("Connection failed: " . mysqli_connect_error());
 						}
-						$result = mysqli_query($con,"SELECT * FROM client_tbl");
+						$result = mysqli_query($con,"SELECT * FROM client_tbl where client_id = '" . $_GET['client_id'] . "'");
 					?>
 					<table>
 						<tr>
 							<td>Client Id</td>
 							<td>Client Name</td>
-							<td>Action</td>
+							<td>Contact Number</td>
+							<td>Fix amount</td>
+							<td>Remaining amount</td>
 						</tr>
 						<?php
 							$i=0;
@@ -403,7 +387,8 @@
 						<tr>
 							<td><?php echo $row["client_id"]; ?></td>
 							<td><?php echo $row["client_name"]; ?></td>
-							<td><a href="project.php?client_id=<?php echo $row["client_id"]; ?>">Project Handler</a></td>
+							<td><?php echo $row["mobile_no"]; ?></td>
+							<td><?php echo $row["money"]; ?></td>
 						</tr>
 						<?php
 							$i++;
@@ -412,6 +397,17 @@
 					</table>
 				</div>
 			</div>
+        </div>
+        <div class="sec">
+            <div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			    <div class="panel-heading">
+				    <h4 class="panel-title">
+					    <a data-toggle="collapse" href="#collapse3">Project TODO</a>
+					</h4>
+				</div>
+				<div id="collapse3" class="panel-collapse collapse">
+                        <p>asd</p>
+                </div>
         </div>
 	</body>
 </html>
