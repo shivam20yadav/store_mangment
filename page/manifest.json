@@ -1,0 +1,9 @@
+{
+    "name":"Kairav Tec.",
+    "short_name":"Kairav",
+    "start_url":"login.php",
+    "display":"standalone",
+    "background_color":"#FFE9D2",
+    "theme_color":"#FFE1C4",
+    "orientation":"portrait-primary"
+}

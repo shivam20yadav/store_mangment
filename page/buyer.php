@@ -36,6 +36,8 @@
 <html>
 	<head>
 	<meta charset="utf-8">
+	<link rel="manifest" href="manifest.json">
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Insert</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet'

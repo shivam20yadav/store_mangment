@@ -51,6 +51,7 @@ if(isset($_POST['but_submit'])){
 
 <head>
     <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
     <!--css -->
@@ -199,7 +200,7 @@ if(isset($_POST['but_submit'])){
                 <br><br>
                 <hr>
                 <p>
-                    If you already have Account!<a href="/page/login.php">Click Hear..</a>
+                    If you already have Account!<a href="login.php">Click Hear..</a>
                 </p>
             </fieldset>
         </div>

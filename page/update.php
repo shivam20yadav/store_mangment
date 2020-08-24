@@ -48,8 +48,9 @@
         <title>Update Data</title>
         <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet'
             type='text/css'>
+            <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
+        <link rel="manifest" href="manifest.json">
         <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/data.js"></script>
