@@ -9,7 +9,7 @@
 		$user = "root"; /* User */
 		$password = ""; /* Password */
 		$dbname = "user_data"; /* Database name */
-
+		
 		$con = mysqli_connect($host, $user, $password,$dbname);
 		// Check connection
 		if (!$con) {
@@ -18,15 +18,22 @@
 
 		$client_name = mysqli_real_escape_string($con,$_POST['cli_nam']);
 		$client_number = mysqli_real_escape_string($con,$_POST['cli_num']);
+		$client_money = mysqli_real_escape_string($con,$_POST['cli_mon']);
 		if($client_name == ""){
 			echo '<script>alert("please enter client name")</script>';
 		}
+		if($client_number == ""){
+			echo '<script>alert("please enter client Mobile Number")</script>';
+		}
+		if($client_money == ""){
+			echo '<script>alert("please enter Fix amount")</script>';
+		}
 		else{
-			$sql = "INSERT INTO client_tbl (client_name,mobile_no) VALUES ('$client_name',$client_number)";
+			$sql = "INSERT INTO client_tbl (client_name,mobile_no,money) VALUES ('$client_name',$client_number,$client_money)";
 			$result = mysqli_query($con, $sql);
 			if ($result)
         	{
-				echo '<script>alert("Product inserted")</script>';
+				echo '<script>alert("Client inserted")</script>';
 				header('Location: buyer.php');
 			}
 		}
@@ -355,6 +362,7 @@
 					<form method="POST" id="myForm">
 						<input type=text placeholder="Enter Client Name" name="cli_nam" required>	
 						<input type=text placeholder="Enter Mobile Number" name="cli_num" required>	
+						<input type=text placeholder="Enter fix amount " name="cli_mon" required>	
 						<input type="submit" value="Create" name="btn-submit">
 					</form>
 				</div>
@@ -387,7 +395,8 @@
 							<td>Client Id</td>
 							<td>Client Name</td>
 							<td>Contact Number</td>
-							<td>action</td>
+							<td>Fix amount</td>
+							<td>Remaining amount</td>
 						</tr>
 						<?php
 							$i=0;
@@ -397,7 +406,7 @@
 							<td><?php echo $row["client_id"]; ?></td>
 							<td><?php echo $row["client_name"]; ?></td>
 							<td><?php echo $row["mobile_no"]; ?></td>
-							<td><a href="clupdate.php?client_id=<?php echo $row["client_id"]; ?>">Update</a></td>
+							<td><?php echo $row["money"]; ?></td>
 						</tr>
 						<?php
 							$i++;
@@ -405,6 +414,18 @@
 						?>
 					</table>
 				</div>
+			</div>
+        </div>
+		<div class = "thr">
+			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse3">Project Management</a>
+					</h4>
+				</div>
+				<div id="collapse3" class="panel-collapse collapse">
+					<!---->
+					<p>asda</p>
 				</div>
 			</div>
         </div>

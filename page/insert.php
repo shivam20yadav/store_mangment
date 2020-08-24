@@ -223,7 +223,6 @@
 			padding: 0;
 			padding-top: 44px;
 			height: 100%;
-			overflow: scroll;
 		}
 		.main-content .title {
 			background-color: #eef1f7;
@@ -396,7 +395,52 @@
 				</div>
 			</div>
         </div>
-        <div class = "sec">
+		<div class = "sec">
+		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#collapse3">Inventory data</a>
+					</h4>
+				</div>
+				<div id="collapse3" class="panel-collapse collapse">
+					<!---->
+					<?php
+						$host = "localhost"; /* Host name */
+						$user = "root"; /* User */
+						$password = ""; /* Password */
+						$dbname = "user_data"; /* Database name */
+				
+						$con = mysqli_connect($host, $user, $password,$dbname);
+						// Check connection
+						if (!$con) {
+							 die("Connection failed: " . mysqli_connect_error());
+						}
+						$result = mysqli_query($con,"SELECT * FROM invt_tbl");
+					?>
+					<table>
+						<tr>
+							<td>Prodcut Id</td>
+							<td>Product Name</td>
+							<td>qty</td>
+						</tr>
+						<?php
+							$i=0;
+							while($row = mysqli_fetch_array($result)) {
+						?>
+							<tr class="<?php if(isset($classname)) echo $classname;?>">
+							<td><?php echo $row["product_id"]; ?></td>
+							<td><?php echo $row["product_name"]; ?></td>
+							<td><?php echo $row["qty"]; ?></td>
+							</tr>
+						<?php
+							$i++;
+						}
+						?>
+					</table>
+				</div>
+			</div>
+        </div>
+        <div class = "thi">
 		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -418,7 +462,7 @@
 						}
 						$result = mysqli_query($con,"SELECT * FROM invt_tbl");
 					?>
-					<table>
+					<table style="margin-bottom:10px;">
 						<tr>
 							<td>Prodcut Id</td>
 							<td>Product Name</td>

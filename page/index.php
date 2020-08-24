@@ -150,7 +150,6 @@ if(!isset($_SESSION["sess_name"])){
 			padding: 0;
 			padding-top: 44px;
 			height: 100%;
-			overflow: scroll;
 		}
 		.main-content .title {
 			background-color: #eef1f7;
