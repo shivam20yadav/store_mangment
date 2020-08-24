@@ -361,7 +361,7 @@
 			</div>
         </div>
         <div class = "sec">
-		<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" href="#collapse2">Client Data</a>
@@ -378,7 +378,7 @@
 						$con = mysqli_connect($host, $user, $password,$dbname);
 						// Check connection
 						if (!$con) {
-							 die("Connection failed: " . mysqli_connect_error());
+							die("Connection failed: " . mysqli_connect_error());
 						}
 						$result = mysqli_query($con,"SELECT * FROM client_tbl");
 					?>
@@ -393,20 +393,20 @@
 							$i=0;
 							while($row = mysqli_fetch_array($result)) {
 						?>
-							<tr>
+						<tr>
 							<td><?php echo $row["client_id"]; ?></td>
 							<td><?php echo $row["client_name"]; ?></td>
 							<td><?php echo $row["mobile_no"]; ?></td>
 							<td><a href="clupdate.php?client_id=<?php echo $row["client_id"]; ?>">Update</a></td>
-							</tr>
+						</tr>
 						<?php
 							$i++;
-						}
+							}
 						?>
 					</table>
 				</div>
+				</div>
 			</div>
-        </div>
         </div>
 	</body>
 </html>
