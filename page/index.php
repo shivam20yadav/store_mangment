@@ -11,7 +11,7 @@ if(!isset($_SESSION["sess_name"])){
 	<meta charset="utf-8">
 	<link rel="manifest" href="manifest.json">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Insert</title>
+	<title>DashBorad</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet'
 		type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

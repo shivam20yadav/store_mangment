@@ -52,13 +52,14 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-    
+
 	<style type="text/css">
 		* {
 			box-sizing: border-box;
@@ -329,11 +330,6 @@
 							<span>DashBorad</span>
 						</a>
                     </li>
-                    <li>
-						<a href="insert.php">
-							<span>Product Handler</span>
-						</a>
-                    </li>
                     <li class="active">
 						<a href="buyer.php">
 							<span>Buyer</span>
@@ -408,8 +404,53 @@
 					</h4>
 				</div>
 				<div id="collapse3" class="panel-collapse collapse">
-                        <p>asd</p>
+                    <div class="container box">
+                        <div class="table-responsive">
+                            <br />
+                            <div align="right">
+                                <button type="button" name="add" id="add" class="btn btn-info">Add</button>
+                            </div>
+                            <br />
+                            <div id="alert_message"></div>
+                                <table id="data" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Date of Creation</th>
+                                            <th>Date of Ending</th>
+                                            <th>Subject</th>
+                                            <th>Status</th>
+                                            <th>Remark</th>
+                                            <th>Expenses</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
-	</body>
-</html>
+ </body>
+ </html>
+ <script type="text/javascript" language="javascript" >
+	$(document).ready(function()
+	{
+	
+		fetch_data();
+
+		function fetch_data()
+		{
+			var dataTable = $('#data').DataTable({
+				"processing" : true,
+				"serverSide" : true,
+				"order" : [],
+				"ajax" : {
+					url:"get.php",
+					type:"POST"
+				}
+			});
+		}
+	});
+</script>
+
