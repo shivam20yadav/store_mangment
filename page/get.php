@@ -3,8 +3,8 @@
 $connect = mysqli_connect("localhost", "root", "", "user_data");
 $columns = array('doc', 'doe','subject','status','remark','exp');
 
-$query = "SELECT * FROM todo ";
 
+$query = "SELECT * FROM todo where client_id =  '".$_POST["id"]."'";
 
 $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
 
@@ -27,7 +27,7 @@ while($row = mysqli_fetch_array($result))
 
 function get_all_data($connect)
 {
- $query = "SELECT * FROM todo";
+ $query = "SELECT * FROM todo where client_id = '".$_POST["id"]."'";
  $result = mysqli_query($connect, $query);
  return mysqli_num_rows($result);
 }

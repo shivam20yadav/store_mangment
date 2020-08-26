@@ -17,7 +17,7 @@
             echo '<script>alert("please enter updated client name")</script>';
         }
         else if($pro_qty == ""){
-            echo '<script>alert("please enter client updated mobile")</script>';
+            echo '<script>alert("please enter client updated mobile number")</script>';
         }
         else if($some == ""){
             echo '<script>alert("please enter updated fix amount")</script>';
