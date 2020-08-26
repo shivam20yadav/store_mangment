@@ -338,11 +338,6 @@
 							<span>DashBorad</span>
 						</a>
                     </li>
-                    <li>
-						<a href="insert.php">
-							<span>Product Handler</span>
-						</a>
-                    </li>
                     <li class="active">
 						<a href="buyer.php">
 							<span>Buyer</span>

@@ -270,11 +270,6 @@ if(!isset($_SESSION["sess_name"])){
 						</a>
                     </li>
                     <li>
-						<a href="insert.php">
-							<span>Product Handler </span>
-						</a>
-                    </li>
-                    <li>
 						<a href="buyer.php">
 							<span>Buyer</span>
 						</a>
