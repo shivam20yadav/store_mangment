@@ -348,71 +348,102 @@
 				client management
         	</div>
 		
-        <div class="main">
-			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" href="#collapse2">Client Data</a>
-					</h4>
-				</div>
-				<div id="collapse2" class="panel-collapse collapse">
-					<!---->
-					<?php
-						$host = "localhost"; /* Host name */
-						$user = "root"; /* User */
-						$password = ""; /* Password */
-						$dbname = "user_data"; /* Database name */
+        	<div class="main">
+				<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse2">Client Data</a>
+						</h4>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse">
+						<!---->
+						<?php
+							$host = "localhost"; /* Host name */
+							$user = "root"; /* User */
+							$password = ""; /* Password */
+							$dbname = "user_data"; /* Database name */
 				
-						$con = mysqli_connect($host, $user, $password,$dbname);
-						// Check connection
-						if (!$con) {
-							die("Connection failed: " . mysqli_connect_error());
-						}
-						$result = mysqli_query($con,"SELECT * FROM client_tbl where client_id = '" . $_GET['client_id'] . "'");
-					?>
-					<table>
-						<tr>
-							<td>Client Id</td>
-							<td>Client Name</td>
-							<td>Contact Number</td>
-							<td>Fix amount</td>
-							<td>Remaining amount</td>
-						</tr>
-						<?php
-							$i=0;
-							while($row = mysqli_fetch_array($result)) {
-						?>
-						<tr>
-							<td><?php echo $row["client_id"]; ?></td>
-							<td><?php echo $row["client_name"]; ?></td>
-							<td><?php echo $row["mobile_no"]; ?></td>
-							<td><?php echo $row["money"]; ?></td>
-						</tr>
-						<?php
-							$i++;
+							$con = mysqli_connect($host, $user, $password,$dbname);
+							// Check connection
+							if (!$con) {
+								die("Connection failed: " . mysqli_connect_error());
 							}
+							$result = mysqli_query($con,"SELECT * FROM client_tbl where client_id = '" . $_GET['client_id'] . "'");
 						?>
-					</table>
+						<table>
+							<tr>
+								<td>Client Id</td>
+								<td>Client Name</td>
+								<td>Contact Number</td>
+								<td>Fix amount</td>
+								<td>Action</td>
+							</tr>
+							<?php
+								$i=0;
+								while($row = mysqli_fetch_array($result)) {
+							?>
+							<tr>
+								<td><?php echo $row["client_id"]; ?></td>
+								<td><?php echo $row["client_name"]; ?></td>
+								<td><?php echo $row["mobile_no"]; ?></td>
+								<td><?php echo $row["money"]; ?></td>
+								<td><a href="clupdate.php?client_id=<?php echo $row["client_id"]; ?>">Update</a></td>
+							</tr>
+							<?php
+								$i++;
+								}
+							?>
+						</table>
+					</div>
 				</div>
-			</div>
-        </div>
-        <div class="sec">
-            <div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
-			    <div class="panel-heading">
-				    <h4 class="panel-title">
-					    <a data-toggle="collapse" href="#collapse3">Project TODO</a>
-					</h4>
-				</div>
-				<div id="collapse3" class="panel-collapse collapse">
-                    <div class="container box">
-                        <div class="table-responsive">
-                            <br />
-                            <div align="right">
-                                <button type="button" name="add" id="add" class="btn btn-info">Add</button>
-                            </div>
-                            <br />
-                            <div id="alert_message"></div>
+        	</div>
+        	<div class="sec">
+            	<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			    	<div class="panel-heading">
+				    	<h4 class="panel-title">
+					    	<a data-toggle="collapse" href="#collapse3">Remaining Tasks</a>
+						</h4>
+					</div>
+					<div id="collapse3" class="panel-collapse collapse">
+                    	<div class="container box">
+                        	<div class="table-responsive">
+                            	<br />
+                            	<div align="right">
+                                	<button type="button" name="add" id="add" class="btn btn-info">Add</button>
+                            	</div>
+                            	<br />
+                            	<div id="alert_message"></div>
                                 <table id="data" class="table table-bordered table-striped">
+                                   	<thead>
+                                       	<tr>
+                                           	<th>Date of Creation</th>
+                                           	<th>Date of Ending</th>
+                                           	<th>subject</th>
+                                           	<th>Status</th>
+                                           	<th>Remark</th>
+											<th>Action</th>
+                                       	</tr>
+                                   	</thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="thr">
+            	<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			    	<div class="panel-heading">
+				    	<h4 class="panel-title">
+					    	<a data-toggle="collapse" href="#collapse4">Completed task</a>
+						</h4>
+					</div>
+					<div id="collapse4" class="panel-collapse collapse">
+                    	<div class="container box">
+                        	<div class="table-responsive">
+                            	<br />
+                            	<div id="alert_message"></div>
+                                <table id="data_comp" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>Date of Creation</th>
@@ -420,10 +451,41 @@
                                             <th>subject</th>
                                             <th>Status</th>
                                             <th>Remark</th>
-                                            <th>Expenses</th>
-                                            <th></th>
+                                            
                                         </tr>
                                     </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="for">
+            	<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			    	<div class="panel-heading">
+				    	<h4 class="panel-title">
+					    	<a data-toggle="collapse" href="#collapse5">Payment Sheet</a>
+						</h4>
+					</div>
+					<div id="collapse5" class="panel-collapse collapse">
+                    	<div class="container box">
+                        	<div class="table-responsive">
+                            	<br />
+                            	<div align="right">
+                                	<button type="button" name="add" id="add" class="btn btn-info">Add</button>
+                            	</div>
+                            	<br />
+                            	<div id="alert_message"></div>
+                                <table id="data_payment" class="table table-bordered table-striped">
+                                   	<thead>
+                                       	<tr>
+                                           	<th>Date</th>
+                                           	<th>Debit</th>
+                                           	<th>Credit</th>
+                                           	<th>Remark</th>
+											<th>Action</th>
+                                       	</tr>
+                                   	</thead>
                                 </table>
                             </div>
                         </div>
@@ -438,13 +500,12 @@
 		return $_GET['client_id'];
 	  }
  ?>
- <script type="text/javascript" language="javascript" >
 
+<script type="text/javascript" language="javascript" >
 	var id = <?php echo add();?>;
 	$(document).ready(function()
 	{
 		fetch_data();
-		
 		function fetch_data()
 		{
 			var dataTable = $('#data').DataTable({
@@ -457,7 +518,7 @@
 					data:{id:id}
 				}
 			});
-		}
+		}		
 		function update_data(todo_id, column_name, value)
   		{
 			  
@@ -490,7 +551,6 @@
    			html += '<td contenteditable id="data3"></td>';
    			html += '<td contenteditable id="data4"><select id="do"><option value="remaining">remaining</option><option value="Completed">Completed</option></td>';
    			html += '<td contenteditable id="data5"></td>';
-   			html += '<td contenteditable id="data6"></td>';
    			html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
    			html += '</tr>';
    			$('#data tbody').prepend(html);
@@ -503,7 +563,7 @@
 			var status = document.getElementById("do").value;
 			var remark = $('#data5').text();
 			var exp = $('#data6').text();
-   			if(subject != '' && status != '' && remark != '' && exp != '')
+   			if(subject != '' && status != '')
    			{
 				   
     			$.ajax({
@@ -523,7 +583,7 @@
    			}
    			else
    			{
-    			alert("Both Fields is required");
+    			alert("You forgot to fill Fields is required");
    			}
   		});	
 		$(document).on('click', '.delete', function(){
@@ -545,6 +605,68 @@
     			}, 5000);
    			}
   		});
+		$(document).on('click', '.comp', function(){
+			
+			var id = $(this).attr("id");
+   			if(confirm("Are you sure you completed this task?"))
+   			{
+    			$.ajax({
+     				url:"comp.php",
+     				method:"POST",
+     				data:{id:id},
+     				success:function(data){
+      					$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+      					$('#data').DataTable().destroy();
+      				fetch_data();
+     		}
+    		});
+    		setInterval(function(){
+     			$('#alert_message').html('');
+    			}, 5000);
+   			}
+  		});
+
 	});
 </script>
+<script>
+	$(document).ready(function()
+		{
+			fetch_data();
+			
+			function fetch_data()
+			{
+				var dataTable = $('#data_comp').DataTable({
+				"processing" : true,
+				"serverSide" : true,
+				"order" : [],
+				"ajax" : {
+					url:"show.php",
+					method:"POST",
+					data:{id:id}
+				}
+			});
+		}	
+	});
+</script>
+<script>
+	$(document).ready(function()
+		{
+			fetch_data();
+			
+			function fetch_data()
+			{
+				var dataTable = $('#data_payment').DataTable({
+				"processing" : true,
+				"serverSide" : true,
+				"order" : [],
+				"ajax" : {
+					url:"payshow.php",
+					method:"POST",
+					data:{id:id}
+				}
+			});
+		}	
+	});
+</script>
+
 
