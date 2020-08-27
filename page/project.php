@@ -485,10 +485,10 @@
 
 		$('#add').click(function(){
    			var html = '<tr>';
-   			html += '<td contenteditable id="data1"></td>';
-   			html += '<td contenteditable id="data2"></td>';
+   			html += '<td contenteditable id="data1"><input type = "date" id="doc"></td>';
+   			html += '<td contenteditable id="data2"><input type="date" id="doe"></td>';
    			html += '<td contenteditable id="data3"></td>';
-   			html += '<td contenteditable id="data4"></td>';
+   			html += '<td contenteditable id="data4"><select id="do"><option value="remaining">remaining</option><option value="Completed">Completed</option></td>';
    			html += '<td contenteditable id="data5"></td>';
    			html += '<td contenteditable id="data6"></td>';
    			html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
@@ -497,14 +497,15 @@
   		});
 
 		$(document).on('click', '#insert', function(){
-   			var doc = $('#data1').text();
-   			var doe = $('#data2').text();
+   			var doc = document.getElementById("doc").value;		
+   			var doe =document.getElementById("doe").value;
 			var subject = $('#data3').text();
-			var status = $('#data4').text();
+			var status = document.getElementById("do").value;
 			var remark = $('#data5').text();
 			var exp = $('#data6').text();
-   			if(doc != '' && doe != '' && subject != '' && status != '' && remark != '' && exp != '')
+   			if(subject != '' && status != '' && remark != '' && exp != '')
    			{
+				   
     			$.ajax({
      				url:"insert.php",
      				method:"POST",
@@ -512,7 +513,7 @@
      				success:function(data)
      				{
       					$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-      					$('#user_data').DataTable().destroy();
+      					$('#data').DataTable().destroy();
       					fetch_data();
      				}
     			});
@@ -525,6 +526,25 @@
     			alert("Both Fields is required");
    			}
   		});	
+		$(document).on('click', '.delete', function(){
+   			var id = $(this).attr("id");
+   			if(confirm("Are you sure you want to remove this?"))
+   			{
+    			$.ajax({
+     				url:"delete.php",
+     				method:"POST",
+     				data:{id:id},
+     				success:function(data){
+      				$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+      				$('#data').DataTable().destroy();
+      				fetch_data();
+     		}
+    		});
+    		setInterval(function(){
+     			$('#alert_message').html('');
+    			}, 5000);
+   			}
+  		});
 	});
 </script>
 

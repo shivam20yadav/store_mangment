@@ -4,7 +4,7 @@ $connect = mysqli_connect("localhost", "root", "", "user_data");
 $columns = array('doc', 'doe','subject','status','remark','exp');
 
 
-$query = "SELECT * FROM todo where client_id =  '".$_POST["id"]."'";
+$query = "SELECT * FROM todo where client_id =  '".$_POST["id"]."' AND status = 'reaming' ";
 
 $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
 
