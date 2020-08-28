@@ -16,7 +16,7 @@
         	$output .= '<tr>   
                           	<td>'.$row["date"].'</td>  
                           	<td style="color:red">'.$row["payment"].'</td>  
-                          	<td>'.$row["exp"].'</td>
+                          	<td style="color:green">'.$row["exp"].'</td>
                           	<td>'.$row["remark"].'</td>  
                      	</tr> 
                           ';  
@@ -29,8 +29,9 @@
 		$row2 = mysqli_fetch_assoc($result3); 
 		
 		$d = $row1['abcd'];
-    	$sum = $row2['efgh'];
-		$output .='<tr><td>TrANSACTION TOTAL</td><td> '.$d.'</td><td> '.$sum.'</td></tr>';
+		$sum = $row2['efgh'];
+		$pro = $d - $sum;
+		$output .='<tr><td></td><td></td><td></td><td></td></tr><tr><td>TRANSACTION TOTAL</td><td> '.$d.'</td><td> '.$sum.'</td><td></td></tr><tr><td>PROFIT</td><td style="color:green">'.$pro.'</td></tr>';
 		
 		return $output;
 		
