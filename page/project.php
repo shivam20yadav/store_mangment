@@ -3,82 +3,50 @@
 	if(!isset($_SESSION["sess_name"])){
 		header("Location: login.php");
 	}
-	if(isset($_POST['btn-submit']))
-	{
-		$host = "localhost"; /* Host name */
-		$user = "root"; /* User */
-		$password = ""; /* Password */
-		$dbname = "user_data"; /* Database name */
-		
-		$con = mysqli_connect($host, $user, $password,$dbname);
-		// Check connection
-		if (!$con) {
-			die("Connection failed: " . mysqli_connect_error());
-		}
-
-		$client_name = mysqli_real_escape_string($con,$_POST['cli_nam']);
-		$client_number = mysqli_real_escape_string($con,$_POST['cli_num']);
-		$client_money = mysqli_real_escape_string($con,$_POST['cli_mon']);
-		if($client_name == ""){
-			echo '<script>alert("please enter client name")</script>';
-		}
-		if($client_number == ""){
-			echo '<script>alert("please enter client Mobile Number")</script>';
-		}
-		if($client_money == ""){
-			echo '<script>alert("please enter Fix amount")</script>';
-		}
-		else{
-			$sql = "INSERT INTO client_tbl (client_name,mobile_no,money) VALUES ('$client_name',$client_number,$client_money)";
-			$result = mysqli_query($con, $sql);
-			if ($result)
-        	{
-				echo '<script>alert("Client inserted")</script>';
-				header('Location: buyer.php');
-			}
-		}
-	}
 	function fetch_data()  
  	{  
-    	$output = '';  
-      	$connect = mysqli_connect("localhost", "root", "", "user_data");  
-      	$sql = "SELECT * FROM payment ORDER BY payment_id ASC";  
+		$output = '';  
+		$output2 = ''; 
+		$connect = mysqli_connect("localhost", "root", "", "user_data");  
+		  
+		$sql = "SELECT * FROM payment where client_id= '". $_GET['client_id'] ."'";    
       	$result = mysqli_query($connect, $sql);  
       	while($row = mysqli_fetch_array($result))  
       	{       
-        	$output .= '<tr>  
-                        	<td>'.$row["payment_id"].'</td>   
+        	$output .= '<tr>   
                           	<td>'.$row["date"].'</td>  
                           	<td style="color:red">'.$row["payment"].'</td>  
                           	<td>'.$row["exp"].'</td>
                           	<td>'.$row["remark"].'</td>  
                      	</tr> 
                           ';  
-      	}  
-      return $output;  
+		}  
+
+		$result2 = mysqli_query($connect, "SELECT SUM(payment) AS abcd FROM payment where client_id = '". $_GET['client_id'] ."'"); 
+    	$result3 = mysqli_query($connect, "SELECT SUM(exp) AS efgh FROM payment where client_id = '". $_GET['client_id'] ."'");  
+		
+		$row1 = mysqli_fetch_assoc($result2);  
+		$row2 = mysqli_fetch_assoc($result3); 
+		
+		$d = $row1['abcd'];
+    	$sum = $row2['efgh'];
+		$output .='<tr><td>TrANSACTION TOTAL</td><td> '.$d.'</td><td> '.$sum.'</td></tr>';
+		
+		return $output;
+		
  	}  
- 	function fetch(){
-    	$output = '';  
-    	$connect = mysqli_connect("localhost", "root", "", "user_data");  
-    	$result = mysqli_query($connect, 'SELECT SUM(payment) AS value_sum FROM payment'); 
-
-    	$result2 = mysqli_query($connect, 'SELECT SUM(exp) AS val FROM payment'); 
-
-    	$row2 = mysqli_fetch_assoc($result2);  
-    	$row = mysqli_fetch_assoc($result); 
-
-    	$d = $row2['val'];
-    	$sum = $row['value_sum'];
-    	$output .='<tr> <td></td><td></td><td>total='.$sum.'</td><td>'.$d.'</td> </tr>';
-    	return $output;  
- 	}	
-
+ 	
  	if(isset($_POST["create_pdf"]))  
- 	{  
-    	require_once('tcpdf/tcpdf.php');  
+ 	{ 
+		$connect = mysqli_connect("localhost", "root", "", "user_data");  
+    	$result = mysqli_query($connect, "SELECT client_name AS value_sum FROM client_tbl where client_id = '" . $_GET['client_id'] . "'");  
+		$row = mysqli_fetch_assoc($result);
+		$sum = $row['value_sum'];
+
+		require_once('tcpdf.php');  
     	$obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
       	$obj_pdf->SetCreator(PDF_CREATOR);  
-      	$obj_pdf->SetTitle("Export HTML Table data to PDF using TCPDF in PHP");  
+      	$obj_pdf->SetTitle('Client Name:- "'.$sum.'"');  
       	$obj_pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
       	$obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));  
 		$obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));  
@@ -92,20 +60,19 @@
 		$obj_pdf->AddPage();  
 		$content = '';  
 		$content .= '  
-		<h3 align="center">Export HTML Table data to PDF using TCPDF in PHP</h3><br /><br />  
+		<h3 align="center">balance sheet</h3><br /><br />  
 		<table border="1" cellspacing="0" cellpadding="5">  
 			<tr>  
-					<th width="5%">ID</th>  
-					<th width="30%">Name</th>  
-					<th width="10%">Gender</th>  
-					<th width="45%">Designation</th>  
-					<th width="10%">Age</th>  
+				<th width="20%">Date</th>  
+				<th width="25%" id="try">payment</th>  
+				<th width="25%">exp</th>  
+				<th width="20%">remark</th>  
 			</tr>  
 		';  
 		$content .= fetch_data();  
 		$content .= '</table>';  
 		$obj_pdf->writeHTML($content);  
-		$obj_pdf->Output('sample.pdf', 'I');  
+		$obj_pdf->Output('"'.$sum.'".pdf', 'I');  
  	}  
 ?>
 <!DOCTYPE html>
@@ -500,7 +467,6 @@
                     </div>
                 </div>
             </div>
-			
 			<div class="thr" id="thr">
             	<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
 			    	<div class="panel-heading">
@@ -562,6 +528,36 @@
                     </div>
                 </div>
             </div>
+			<div class="main">
+				<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse6">Client Data</a>
+						</h4>
+					</div>
+					<div id="collapse6" class="panel-collapse collapse">
+						<!---->
+						<div class="table-responsive">  
+                     <table class="table table-bordered">  
+                          <tr>  
+                               <th width="10%">Date</th>  
+                               <th width="15%" id="try">payment</th>  
+                               <th width="15%">exp</th>  
+                               <th width="10%">remark</th>  
+                          </tr>  
+                     <?php  
+                     echo fetch_data();  
+                     ?>
+                     </table> 
+                </div> 
+                     <br />  
+                     <form method="post">  
+                          <input type="submit" name="create_pdf" class="btn btn-danger" value="Create PDF" />  
+                     </form> 
+					</div>
+				</div>
+        	</div>
+
         </div>
  </body>
  </html>
