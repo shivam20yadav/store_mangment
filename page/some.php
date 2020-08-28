@@ -98,8 +98,7 @@
                      <br />  
                      <form method="post">  
                           <input type="submit" name="create_pdf" class="btn btn-danger" value="Create PDF" />  
-                     </form>  
-                 
+                     </form>     
            </div>  
       </body>  
  </html>  
