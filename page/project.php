@@ -402,7 +402,7 @@
             	<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
 			    	<div class="panel-heading">
 				    	<h4 class="panel-title">
-					    	<a data-toggle="collapse" href="#collapse3">Remaining Tasks</a>
+					    	<a data-toggle="collapse" href="#collapse3">Tasks</a>
 						</h4>
 					</div>
 					<div id="collapse3" class="panel-collapse collapse">
@@ -473,7 +473,7 @@
                         	<div class="table-responsive">
                             	<br />
                             	<div align="right">
-                                	<button type="button" name="add" id="add" class="btn btn-info">Add</button>
+                                	<button type="button" name="add" id="add_pay" class="btn btn-info">Add</button>
                             	</div>
                             	<br />
                             	<div id="alert_message"></div>
@@ -552,12 +552,12 @@
    			html += '<td contenteditable id="data3"></td>';
    			html += '<td contenteditable id="data4"><select id="do"><option value="remaining">remaining</option><option value="Completed">Completed</option></td>';
    			html += '<td contenteditable id="data5"></td>';
-   			html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
+   			html += '<td><button type="button" name="insert" id="payins" class="btn btn-success btn-xs">Insert</button></td>';
    			html += '</tr>';
    			$('#data tbody').prepend(html);
   		});
 
-		$(document).on('click', '#insert', function(){
+		$(document).on('click', '#payins', function(){
    			var doc = document.getElementById("doc").value;		
    			var doe =document.getElementById("doe").value;
 			var subject = $('#data3').text();
@@ -651,22 +651,61 @@
 </script>
 <script>
 	$(document).ready(function()
+	{
+		fetch_data();
+		
+		function fetch_data()
 		{
-			fetch_data();
-			
-			function fetch_data()
-			{
-				var dataTable = $('#data_payment').DataTable({
-				"processing" : true,
-				"serverSide" : true,
-				"order" : [],
-				"ajax" : {
-					url:"payshow.php",
-					method:"POST",
-					data:{id:id}
-				}
+			var dataTable = $('#data_payment').DataTable({
+			"processing" : true,
+			"serverSide" : true,
+			"order" : [],
+			"ajax" : {
+				url:"payshow.php",
+				method:"POST",
+				data:{id:id}
+			}
 			});
 		}	
+		$('#add_pay').click(function(){
+   			var html = '<tr>';
+   			html += '<td contenteditable id="data1"><input type = "date" id="paydat"></td>';
+   			html += '<td contenteditable id="data2"></td>';
+   			html += '<td contenteditable id="data3"></td>';
+   			html += '<td contenteditable id="data4"></td>';
+   			html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
+   			html += '</tr>';
+   			$('#data_payment tbody').prepend(html);
+  		});
+
+		$(document).on('click', '#insert', function(){
+   			var doc = document.getElementById("paydat").value;		
+			var debit = $('#data2').text();
+			var credit = $('#data3').text();
+			var remark = $('#data4').text();
+   			if(doc != '')
+   			{
+				   
+    			$.ajax({
+     				url:"payadd.php",
+     				method:"POST",
+     				data:{doc:doc, debit:debit, credit:credit, remark:remark,id:id},
+     				success:function(data)
+     				{
+      					$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+      					$('#data_payment').DataTable().destroy();
+      					fetch_data();
+     				}
+    			});
+    			setInterval(function(){
+     			$('#alert_message').html('');
+    			}, 5000);
+   			}
+   			else
+   			{
+    			alert("You forgot to fill date is required");
+   			}
+  		});	
 	});
 </script>
 
