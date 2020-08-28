@@ -15,11 +15,11 @@ $data = array();
 while($row = mysqli_fetch_array($result))
 {
  $sub_array = array();
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["todo_id"].'" data-column="Date of Creation">' . $row["doc"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["todo_id"].'" data-column="Date of Ending">' . $row["doe"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["todo_id"].'" data-column="Subject">' . $row["subject"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["todo_id"].'" data-column="Status">' . $row["status"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["todo_id"].'" data-column="Remark">' . $row["remark"] . '</div>';
+ $sub_array[] = '<div data-id="'.$row["todo_id"].'" data-column="Date of Creation">' . $row["doc"] . '</div>';
+ $sub_array[] = '<div data-id="'.$row["todo_id"].'" data-column="Date of Ending">' . $row["doe"] . '</div>';
+ $sub_array[] = '<div data-id="'.$row["todo_id"].'" data-column="Subject">' . $row["subject"] . '</div>';
+ $sub_array[] = '<div data-id="'.$row["todo_id"].'" data-column="Status">' . $row["status"] . '</div>';
+ $sub_array[] = '<div data-id="'.$row["todo_id"].'" data-column="Remark">' . $row["remark"] . '</div>';
  $data[] = $sub_array;
 }
 
