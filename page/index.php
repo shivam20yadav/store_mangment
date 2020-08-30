@@ -22,6 +22,13 @@ if(!isset($_SESSION["sess_name"])){
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 	<style type="text/css">
 		* {
 			box-sizing: border-box;
@@ -284,15 +291,93 @@ if(!isset($_SESSION["sess_name"])){
 		</div>
 		<div class="main-content">
 			<div class="title">
-				Remaining Stock
-        </div>
-        <div class="main"style="padding-left:20px;">
-            
-        </div>
-        <div class = "sec">
-            <p>
-                asd
-            </p>
-        </div>
+				Today's Works!!
+        	</div>
+        	<div class="main"style="padding-left:10px;">
+			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
+			    	<div class="panel-heading">
+				    	<h4 class="panel-title">
+					    	<a data-toggle="collapse" href="#collapse3">Today's Tasks</a>
+						</h4>
+					</div>
+					<div id="collapse3" class="panel-collapse collapse">
+                    	<div class="container box">
+                        	<div class="table-responsive">                            	
+                            	<br/>
+                            	<div id="alert_message"></div>
+                                <table id="data" class="table table-bordered table-striped">
+                                   	<thead>
+                                       	<tr>
+										   <th>Client Name</th>
+                                           	<th>Date of Ending</th>
+                                           	<th>Subject</th>
+                                           	<th>Remark</th>
+											<th>Action</th>
+                                       	</tr>
+                                   	</thead>
+                                </table>
+                            </div>
+                        </div>
+						
+                    </div>
+                </div>
+        	</div>
+		</div>
 	</body>
 </html>
+<script>
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; 
+	var yyyy = today.getFullYear();
+
+	if(dd<10) 
+	{
+    	dd='0'+dd;
+	} 
+
+	if(mm<10) 
+	{
+    	mm='0'+mm;
+	}
+	today = yyyy+'-'+mm+'-'+dd;
+	$(document).ready(function()
+		{
+			fetch_data();
+			
+			function fetch_data()
+			{
+				var dataTable = $('#data').DataTable({
+				"processing" : true,
+				"serverSide" : true,
+				"order" : [],
+				"ajax" : {
+					url:"help.php",
+					method:"POST",
+					data:{today:today}
+				}
+			});
+		}	
+	});
+	$(document).on('click', '.comp', function(){
+			
+			var id = $(this).attr("id");
+   			if(confirm("Are you sure you completed this task?"))
+   			{
+    			$.ajax({
+     				url:"comp.php",
+     				method:"POST",
+     				data:{id:id},
+     				success:function(data){
+      					$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+      					$('#data').DataTable().destroy();
+      				fetch_data();
+     		}
+    		});
+    		setInterval(function(){
+     			$('#alert_message').html('');
+    			}, 5000);
+   			}
+  		});
+
+</script>
