@@ -14,16 +14,16 @@
       	while($row = mysqli_fetch_array($result))  
       	{       
         	$output .= '<tr>   
-                          	<td>'.$row["date"].'</td>  
-                          	<td style="color:red">'.$row["payment"].'</td>  
-                          	<td style="color:green">'.$row["exp"].'</td>
-                          	<td>'.$row["remark"].'</td>  
+								<td>'.$row["date"].'</td>  
+								<td style="color:red">'.$row["debit"].'</td>
+                          		<td style="color:green">'.$row["credit"].'</td>  
+                          		<td>'.$row["remark"].'</td>  
                      	</tr> 
                           ';  
 		}  
 
-		$result2 = mysqli_query($connect, "SELECT SUM(payment) AS abcd FROM payment where client_id = '". $_GET['client_id'] ."'"); 
-    	$result3 = mysqli_query($connect, "SELECT SUM(exp) AS efgh FROM payment where client_id = '". $_GET['client_id'] ."'");  
+		$result2 = mysqli_query($connect, "SELECT SUM(credit) AS abcd FROM payment where client_id = '". $_GET['client_id'] ."'"); 
+    	$result3 = mysqli_query($connect, "SELECT SUM(debit) AS efgh FROM payment where client_id = '". $_GET['client_id'] ."'");  
 		
 		$row1 = mysqli_fetch_assoc($result2);  
 		$row2 = mysqli_fetch_assoc($result3); 
@@ -31,7 +31,13 @@
 		$d = $row1['abcd'];
 		$sum = $row2['efgh'];
 		$pro = $d - $sum;
-		$output .='<tr><td></td><td></td><td></td><td></td></tr><tr><td>TRANSACTION TOTAL</td><td> '.$d.'</td><td> '.$sum.'</td><td></td></tr><tr><td>PROFIT</td><td style="color:green">'.$pro.'</td></tr>';
+		if ($pro < 0){
+			$color="color:red";
+		}	
+		if($pro > 0){
+			$color="color:green";
+		}	
+		$output .='<tr><td></td><td></td><td></td><td></td></tr><tr><td>TRANSACTION TOTAL</td><td>'.$sum.'</td><td> '.$d.'</td><td></td></tr><tr><td>PROFIT</td><td style='.$color.'>'.$pro.'</td></tr>';
 		
 		return $output;
 		
@@ -64,9 +70,9 @@
 		<h3 align="center">balance sheet</h3><br /><br />  
 		<table border="1" cellspacing="0" cellpadding="5">  
 			<tr>  
-				<th width="20%">Date</th>  
-				<th width="25%" id="try">payment</th>  
-				<th width="25%">exp</th>  
+				<th width="35%">Date</th>  
+				<th width="25%">debit</th>  
+				<th width="25%">credit</th>  
 				<th width="20%">remark</th>  
 			</tr>  
 		';  
@@ -81,7 +87,6 @@
 	<head>
 	<meta charset="utf-8">
 	<link rel="manifest" href="manifest.json">
-	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Insert</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -413,7 +418,6 @@
 								<td>Client Id</td>
 								<td>Client Name</td>
 								<td>Contact Number</td>
-								<td>Fix amount</td>
 								<td>Action</td>
 							</tr>
 							<?php
@@ -424,7 +428,6 @@
 								<td><?php echo $row["client_id"]; ?></td>
 								<td><?php echo $row["client_name"]; ?></td>
 								<td><?php echo $row["mobile_no"]; ?></td>
-								<td><?php echo $row["money"]; ?></td>
 								<td><a href="clupdate.php?client_id=<?php echo $row["client_id"]; ?>">Update</a></td>
 							</tr>
 							<?php
@@ -542,8 +545,8 @@
                      <table class="table table-bordered">  
                           <tr>  
                                <th width="10%">Date</th>  
-                               <th width="15%" id="try">payment</th>  
-                               <th width="15%">exp</th>  
+                               <th width="15%" id="try">Debit</th>  
+                               <th width="15%">Credit</th>  
                                <th width="10%">remark</th>  
                           </tr>  
                      <?php  
@@ -774,5 +777,3 @@
   		});	
 	});
 </script>
-
-

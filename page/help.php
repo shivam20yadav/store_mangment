@@ -24,7 +24,7 @@
 
     function get_all_data($connect)
     {
-    $query = "SELECT client_tbl.client_name,todo.doe,todo.subject,todo.remark FROM client_tbl Inner Join todo On todo.client_id = client_tbl.client_id where todo.doe = '".$_POST["today"]."' AND todo.status = 'remaining' ";
+    $query = "SELECT client_tbl.client_name,todo.doe,todo.subject,todo.remark FROM client_tbl Inner Join todo On todo.client_id = client_tbl.client_id where todo.doe = '".$_POST["today"]."' AND todo.status = 'remaining'";
     $result = mysqli_query($connect, $query);
     return mysqli_num_rows($result);
     }
