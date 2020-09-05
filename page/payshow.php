@@ -19,7 +19,7 @@ while($row = mysqli_fetch_array($result))
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["payment_id"].'" data-column="Debit">' . $row["debit"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["payment_id"].'" data-column="Credit">' . $row["credit"] . '</div>';
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["payment_id"].'" data-column="Remark">' . $row["remark"] . '</div>';
- $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete" id="'.$row["payment_id"].'">Delete</button>';
+ $sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-xs delete1" id="'.$row["payment_id"].'">Delete</button>';
  $data[] = $sub_array;
 }
 

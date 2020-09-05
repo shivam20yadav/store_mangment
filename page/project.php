@@ -514,8 +514,7 @@
                             	<div align="right">
                                 	<button type="button" name="add" id="add_pay" class="btn btn-info">Add</button>
                             	</div>
-                            	<br />
-                            	<div id="alert_message"></div>
+                            	<br/>
                                 <table id="data_payment" class="table table-bordered table-striped">
                                    	<thead>
                                        	<tr>
@@ -694,6 +693,7 @@
      			$('#alert_message').html('');
     			}, 5000);
    			}
+			   document.location.reload(true);
   		});
 
 	});
@@ -758,22 +758,26 @@
     			$.ajax({
      				url:"payadd.php",
      				method:"POST",
-     				data:{doc:doc, debit:debit, credit:credit, remark:remark,id:id},
-     				success:function(data)
-     				{
-      					$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-      					$('#data_payment').DataTable().destroy();
-      					fetch_data();
-     				}
+     				data:{doc:doc, debit:debit, credit:credit, remark:remark,id:id}
     			});
-    			setInterval(function(){
-     			$('#alert_message').html('');
-    			}, 5000);
    			}
    			else
    			{
     			alert("You forgot to fill date is required");
    			}
+			   document.location.reload(true);
   		});	
+		$(document).on('click', '.delete1', function(){
+			var id = $(this).attr("id");
+			if(confirm("Are you sure you want to remove this payment?"))
+   			{
+    			$.ajax({
+     				url:"paydel.php",
+     				method:"POST",
+     				data:{id:id}
+				});
+				document.location.reload(true);
+     		}
+    	});   			
 	});
 </script>

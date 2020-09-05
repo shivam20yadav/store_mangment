@@ -18,18 +18,14 @@
 
 		$client_name = mysqli_real_escape_string($con,$_POST['cli_nam']);
 		$client_number = mysqli_real_escape_string($con,$_POST['cli_num']);
-		$client_money = mysqli_real_escape_string($con,$_POST['cli_mon']);
 		if($client_name == ""){
 			echo '<script>alert("please enter client name")</script>';
 		}
 		if($client_number == ""){
 			echo '<script>alert("please enter client Mobile Number")</script>';
 		}
-		if($client_money == ""){
-			echo '<script>alert("please enter Fix amount")</script>';
-		}
 		else{
-			$sql = "INSERT INTO client_tbl (client_name,mobile_no,money) VALUES ('$client_name',$client_number,$client_money)";
+			$sql = "INSERT INTO client_tbl (client_name,mobile_no) VALUES ('$client_name',$client_number)";
 			$result = mysqli_query($con, $sql);
 			if ($result)
         	{
@@ -398,7 +394,7 @@
 						<tr>
 							<td><?php echo $row["client_id"]; ?></td>
 							<td><?php echo $row["client_name"]; ?></td>
-							<td><a href="project.php?client_id=<?php echo $row["client_id"]; ?>">Project Handler</a></td>
+							<td><a href="project.php?client_id=<?php echo $row["client_id"]; ?>">Project Handler</a> <button type="button" name="comp" class="btn btn-success btn-xs comp "  onclick="myFunction(<?php echo $row["client_id"]; ?>)">Completed</button></td>
 						</tr>
 						<?php
 							$i++;
@@ -410,3 +406,23 @@
         </div>
 	</body>
 </html>
+<?php 
+	function add(){
+		return  $row["client_id"];
+	  }
+ ?>
+<script>
+	
+	function myFunction(id) {
+		if(confirm("Are you sure this project completed?"))
+   		{
+			$.ajax({
+     				url:"comproj.php",
+     				method:"POST",
+     				data:{id:id}
+			});
+		}
+		document.location.reload(true);
+	}
+	
+</script>
