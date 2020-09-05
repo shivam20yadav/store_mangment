@@ -193,15 +193,15 @@ if(isset($_POST['but_submit'])){
                 <div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
                 <input type="text" id="user_name" name="username" placeholder="Phone Number,Username, or e-mail">
                 <br><br>
-                <input type="password" id="user_pass" name = "password" placeholder="Password">
+                <input type="password" id="user_pass" name = "password" placeholder="Password" pattern="^\S+$" title="white space is not allowed" required>
                 <br><br>
-                <input type="password" id="user_pass2" name = "confirm_password" placeholder="renter the password">
+                <input type="password" id="user_pass2" name = "confirm_password" placeholder="renter the password" pattern="^\S+$" title="white space is not allowed" required>
                 <br><br>
                 <input type="submit" name=but_submit value="Sign up">
                 <br><br>
                 <hr>
                 <p>
-                    If you already have Account!<a href="login.php">Click Hear..</a>
+                    If you already have Account!<a href="login.php">Click Here..</a>
                 </p>
             </fieldset>
         </div>

@@ -320,7 +320,7 @@
 				<ul>
 					<li>
 						<a href="index.php">
-							<span>DashBorad</span>
+							<span>DashBoard</span>
 						</a>
                     </li>
                     <li class="active">
@@ -352,8 +352,7 @@
 					<!---->
 					<form method="POST" id="myForm">
 						<input type=text placeholder="Enter Client Name" name="cli_nam" required>	
-						<input type=text placeholder="Enter Mobile Number" name="cli_num" required>	
-						<input type=text placeholder="Enter fix amount " name="cli_mon" required>	
+						<input type=text placeholder="Enter Mobile Number" name="cli_num" pattern="[0-9]+" title="please enter number only"  required>	
 						<input type="submit" value="Create" name="btn-submit">
 					</form>
 				</div>
@@ -383,7 +382,6 @@
 					?>
 					<table>
 						<tr>
-							<td>Client Id</td>
 							<td>Client Name</td>
 							<td>Action</td>
 						</tr>
@@ -392,9 +390,8 @@
 							while($row = mysqli_fetch_array($result)) {
 						?>
 						<tr>
-							<td><?php echo $row["client_id"]; ?></td>
 							<td><?php echo $row["client_name"]; ?></td>
-							<td><a href="project.php?client_id=<?php echo $row["client_id"]; ?>">Project Handler</a> <button type="button" name="comp" class="btn btn-success btn-xs comp "  onclick="myFunction(<?php echo $row["client_id"]; ?>)">Completed</button></td>
+							<td><a href="project.php?client_id=<?php echo $row["client_id"]; ?>">Project Handler</a> <button type="button" name="comp" class="btn btn-success btn-xs comp " style= "margin-left:10px;" onclick="myFunction(<?php echo $row["client_id"]; ?>)">Completed</button></td>
 						</tr>
 						<?php
 							$i++;

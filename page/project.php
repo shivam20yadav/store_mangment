@@ -370,7 +370,7 @@
 				<ul>
 					<li>
 						<a href="index.php">
-							<span>DashBorad</span>
+							<span>DashBoard</span>
 						</a>
                     </li>
                     <li class="active">

@@ -11,7 +11,7 @@ if(!isset($_SESSION["sess_name"])){
 	<meta charset="utf-8">
 	<link rel="manifest" href="manifest.json">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>DashBorad</title>
+	<title>DashBoard</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet'
 		type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -273,7 +273,7 @@ if(!isset($_SESSION["sess_name"])){
 				<ul>
 					<li class="active">
 						<a href="index.php">
-							<span>DashBorad</span>
+							<span>DashBoard</span>
 						</a>
                     </li>
                     <li>
@@ -291,13 +291,13 @@ if(!isset($_SESSION["sess_name"])){
 		</div>
 		<div class="main-content">
 			<div class="title">
-				Today's Works!!
+				Remaining's Works!!
         	</div>
         	<div class="main"style="padding-left:10px;">
 			<div class="panel panel-default" style="margin-top: 10px;margin-left: 10px;margin-right: 10px;">
 			    	<div class="panel-heading">
 				    	<h4 class="panel-title">
-					    	<a data-toggle="collapse" href="#collapse3">Today's Tasks</a>
+					    	<a data-toggle="collapse" href="#collapse3">Remaining Tasks</a>
 						</h4>
 					</div>
 					<div id="collapse3" class="panel-collapse collapse">
