@@ -17,8 +17,8 @@ if(isset($_POST['but_submit'])){
         $row = mysqli_fetch_array($result);
         $count = $row['cntUser'];
 
-        if($count > 0){
-            echo '<script>alert("Username already please try ")</script>'; 
+        if($count != 0){
+            echo '<script>alert("Username already exist please try another username")</script>'; 
         }
 
     }
@@ -100,7 +100,7 @@ if(isset($_POST['but_submit'])){
             font-family:'Comic Sans MS';
         }
         .new input[type='text']{
-            width:220px;
+            width:250px;
             height:30px; 
             border-bottom-left-radius:7px;
             border-bottom-right-radius:7px;
@@ -113,7 +113,7 @@ if(isset($_POST['but_submit'])){
             margin-left:20px;
         }
         .new input[type='password']{
-            width:220px;
+            width:250px;
             height:30px; 
             border-bottom-left-radius:7px;
             border-bottom-right-radius:7px;
@@ -127,7 +127,7 @@ if(isset($_POST['but_submit'])){
 
         }
         .new input[type='submit']{
-            width:240px; 
+            width:250px; 
             height:30px; 
             border-bottom-left-radius:7px;
             border-bottom-right-radius:7px;
@@ -163,15 +163,15 @@ if(isset($_POST['but_submit'])){
                 padding-left:20px;
             }
             .new input[type='text']{
-                width:300px;
+                width:330px;
                 font-size:18px;
             }
             .new input[type=password]{
-                width:300px;
+                width:330px;
                 font-size:18px;
             }
             .new input[type=submit]{
-                width:320px;
+                width:330px;
                 height:32px;
             }
             .new p{
@@ -190,6 +190,7 @@ if(isset($_POST['but_submit'])){
             <br><br>
             <fieldset>
                 <h1>Creat your account</h1>
+                <div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
                 <input type="text" id="user_name" name="username" placeholder="Phone Number,Username, or e-mail">
                 <br><br>
                 <input type="password" id="user_pass" name = "password" placeholder="Password">
