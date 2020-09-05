@@ -372,12 +372,12 @@ if(!isset($_SESSION["sess_name"])){
       					$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
       					$('#data').DataTable().destroy();
       				fetch_data();
-     		}
-    		});
-    		setInterval(function(){
-     			$('#alert_message').html('');
-    			}, 5000);
+     			}
+    			});
+    			setInterval(function(){
+     				$('#alert_message').html('');
+    				}, 5000);
+					document.location.reload(true);
    			}
   		});
-
 </script>

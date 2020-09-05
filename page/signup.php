@@ -18,7 +18,7 @@ if(isset($_POST['but_submit'])){
         $count = $row['cntUser'];
 
         if($count > 0){
-            echo '<script>alert("Username already")</script>'; 
+            echo '<script>alert("Username already please try ")</script>'; 
         }
 
     }
@@ -26,10 +26,10 @@ if(isset($_POST['but_submit'])){
     {
         echo '<script>alert("please enter password")</script>'; 
     }
-    elseif(strlen($password) < 4){
+    if(strlen($password) < 4){
         echo '<script>alert("Password must have atleast 4 characters.")</script>'; 
     }
-    elseif($password != $password2){
+    if($password != $password2){
         
         echo '<script>alert("password are not matching")</script>'; 
     }
