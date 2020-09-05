@@ -12,18 +12,15 @@
     if(isset($_POST['submit'])){
         $pro_nam = mysqli_real_escape_string($con,$_POST['product_name']);
         $pro_qty = mysqli_real_escape_string($con,$_POST['product_qty']);
-        $some = mysqli_real_escape_string($con,$_POST['Fix_amount']);
+       
         if($pro_nam == ""){
             echo '<script>alert("please enter updated client name")</script>';
         }
         else if($pro_qty == ""){
             echo '<script>alert("please enter client updated mobile number")</script>';
         }
-        else if($some == ""){
-            echo '<script>alert("please enter updated fix amount")</script>';
-        }
         else{
-            $sql ="UPDATE client_tbl set client_name='".$pro_nam."', mobile_no='".$pro_qty."',money='".$some."' WHERE client_name='" .$pro_nam. "'";
+            $sql ="UPDATE client_tbl set client_name='".$pro_nam."', mobile_no='".$pro_qty."' WHERE client_name='" .$pro_nam. "'";
             $result = mysqli_query($con, $sql);
 			if ($result)
         	{
@@ -367,8 +364,8 @@
                     <input type="text" name="product_name" class="txtField" value="<?php echo $row['client_name']; ?>">
                     <tt>Mobile No:- <tt>
                     <input type="text" id="use" name="product_qty" class="txtField" value="<?php echo $row['mobile_no']; ?>">
-                    <tt>Fix amount:- <tt>
-                    <input type="text" name="Fix_amount" class="txtField" value="<?php echo $row['money']; ?>">
+                    
+                
                     <input type="submit" name="submit" value="Update Data" class="buttom">
                 </fieldset>
             </form>
