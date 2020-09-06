@@ -20,7 +20,7 @@
             echo '<script>alert("please enter client updated mobile number")</script>';
         }
         else{
-            $sql ="UPDATE client_tbl set client_name='".$pro_nam."', mobile_no='".$pro_qty."' WHERE client_name='" .$pro_nam. "'";
+            $sql ="UPDATE client_tbl set client_name='".$pro_nam."', mobile_no='".$pro_qty."' WHERE client_id='" .$_GET['client_id']. "'";
             $result = mysqli_query($con, $sql);
 			if ($result)
         	{
@@ -363,7 +363,7 @@
                     <tt>Client Name:- </tt>
                     <input type="text" name="product_name" class="txtField" value="<?php echo $row['client_name']; ?>" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));">
                     <tt>Mobile No:- <tt>
-                    <input type="text" id="use" name="product_qty" class="txtField" value="<?php echo $row['mobile_no']; ?>" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));">
+                    <input type="text" name="product_qty" class="txtField" value="<?php echo $row['mobile_no']; ?>" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));">
                     
                 
                     <input type="submit" name="submit" value="Update Data" class="buttom">
