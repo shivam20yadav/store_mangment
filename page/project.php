@@ -544,7 +544,7 @@
                      <table class="table table-bordered">  
                           <tr>  
                                <th width="10%">Date</th>  
-                               <th width="15%" id="try">Debit</th>  
+                               <th width="15%">Debit</th>  
                                <th width="15%">Credit</th>  
                                <th width="10%">remark</th>  
                           </tr>  
@@ -774,9 +774,13 @@
     			$.ajax({
      				url:"paydel.php",
      				method:"POST",
-     				data:{id:id}
-				});
-				document.location.reload(true);
+     				data:{id:id},
+					success:function(data){
+      				$('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
+      				$('#data_payment').DataTable().destroy();
+      				fetch_data();
+					}
+				});		
      		}
     	});   			
 	});
