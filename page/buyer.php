@@ -351,8 +351,8 @@
 				<div id="collapse1" class="panel-collapse collapse">
 					<!---->
 					<form method="POST" id="myForm">
-						<input type=text placeholder="Enter Client Name" name="cli_nam" required>	
-						<input type=text placeholder="Enter Mobile Number" name="cli_num" pattern="[0-9]+" title="please enter number only"  required>	
+						<input type=text placeholder="Enter Client Name" name="cli_nam" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));" required>	
+						<input type=text placeholder="Enter Mobile Number" name="cli_num" pattern="[0-9]+" title="please enter number only"  onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));" required>	
 						<input type="submit" value="Create" name="btn-submit">
 					</form>
 				</div>

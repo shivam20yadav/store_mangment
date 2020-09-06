@@ -617,9 +617,9 @@
    			var html = '<tr>';
    			html += '<td contenteditable id="data1"><input type = "date" id="doc"></td>';
    			html += '<td contenteditable id="data2"><input type="date" id="doe"></td>';
-   			html += '<td contenteditable id="data3"></td>';
+   			html += '<td contenteditable id="data3" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));"></td>';
    			html += '<td contenteditable id="data4"><select id="do"><option value="remaining">remaining</option><option value="Completed">Completed</option></td>';
-   			html += '<td contenteditable id="data5"></td>';
+   			html += '<td contenteditable id="data5" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));"></td>';
    			html += '<td><button type="button" name="insert" id="payins" class="btn btn-success btn-xs">Insert</button></td>';
    			html += '</tr>';
    			$('#data tbody').prepend(html);
@@ -739,9 +739,9 @@
 		$('#add_pay').click(function(){
    			var html = '<tr>';
    			html += '<td contenteditable id="data1"><input type = "date" id="paydat"></td>';
-   			html += '<td contenteditable id="data2"></td>';
-   			html += '<td contenteditable id="data3"></td>';
-   			html += '<td contenteditable id="data4"></td>';
+   			html += '<td contenteditable id="data2" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));"></td>';
+   			html += '<td contenteditable id="data3" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));"></td>';
+   			html += '<td contenteditable id="data4" onkeypress="return ((event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode == 8 || event.charCode == 32 || (event.charCode >= 48 && event.charCode <= 57));"></td>';
    			html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
    			html += '</tr>';
    			$('#data_payment tbody').prepend(html);
